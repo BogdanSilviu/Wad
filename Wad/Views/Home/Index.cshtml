@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Item>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <title>Main page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styleAllPages.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap-icons-1.8.1/bootstrap-icons-1.8.1/bootstrap-icons.css">
+    <script type="text/javascript" src="bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-3.6.0.min.js"></script>
+
+
+</head>
+
+
+
+<body>
+    
+    <div class="container-fluid p-3 my-1  ">
+        <h1>Welcome to Auctioneer</h1>
+        <h4>Every day, three new vintage objects will find a new owner </h4>
+    </div>
+
+
+
+    <div class="carousel-inner py-0">
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4">
+                            <div class="card">
+                                <img src="~/imgs/@item.Photo"
+                                 class="card-img-top"
+                                 alt="item" />
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Name</h5>
+                                    <p class="card-text">
+                                        @item.Description
+                                    </p>
+                                     @if (User.IsInRole("User"))
+                                    {
+                                        <a  asp-action="Details" asp-controller="Items" asp-route-id="@item.Id" class="btn btn-primary">See item</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
