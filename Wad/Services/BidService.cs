@@ -6,7 +6,7 @@ namespace Wad.Services
 {
     public class BidService : IBidService
     {
-        private IRepositoryWrapper _repositoryWrapper;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
         public BidService(IRepositoryWrapper repositoryWrapper)
         {

@@ -61,7 +61,7 @@ namespace Wad.Repositories
             }
         }
 
-        private ICategoryRepository _categoryRepository;
+        private ICategoryRepository? _categoryRepository;
         public ICategoryRepository CategoryRepository
         {
             get

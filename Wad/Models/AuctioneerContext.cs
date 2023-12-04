@@ -21,7 +21,6 @@ namespace Wad.Models
         public DbSet<Employee>? Employees { get; set; }
         public DbSet<Item>? Items { get; set; }
         public DbSet<Order>? Orders { get; set; }
-        //public DbSet<Wad.Models.User>? User { get; set; }
         public DbSet<Wad.Models.Bid>? Bid { get; set; }
         
 

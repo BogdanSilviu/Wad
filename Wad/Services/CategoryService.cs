@@ -6,7 +6,7 @@ namespace Wad.Services
 {
     public class CategoryService:ICategoryService
     {
-        private IRepositoryWrapper _repositoryWrapper;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
         public CategoryService(IRepositoryWrapper repositoryWrapper)
         {
@@ -28,12 +28,12 @@ namespace Wad.Services
 
         public List<Category> GetCategories()
         {
-            return _repositoryWrapper.CategoryRepository?.FindAll().ToList();
+            return _repositoryWrapper.CategoryRepository?.FindAll().ToList()!;
         }
 
         public Category GetCategoryById(int id)
         {
-            return _repositoryWrapper.CategoryRepository?.FindByCondition(c=>c.Id==id).FirstOrDefault();
+            return _repositoryWrapper.CategoryRepository?.FindByCondition(c=>c.Id==id).FirstOrDefault()!;
         }
 
         public void UpdateCategory(Category category)

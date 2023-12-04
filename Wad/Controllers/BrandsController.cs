@@ -98,8 +98,8 @@ namespace Wad.Controllers
             {
                 try
                 {
-                    _context.Update(brand);
-                    await _context.SaveChangesAsync();
+                    await UpdateBrandAndSaveAsync(brand);
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -112,10 +112,17 @@ namespace Wad.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
+
             return View(brand);
         }
+
+        private async Task UpdateBrandAndSaveAsync(Brand brand)
+        {
+            _context.Update(brand);
+            await _context.SaveChangesAsync();
+        }
+
 
         // GET: Brands/Delete/5
         public async Task<IActionResult> Delete(int? id)

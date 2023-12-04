@@ -135,7 +135,7 @@ namespace Wad.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    
+                    return RedirectToAction(nameof(Index));
                 }
                 return RedirectToAction(nameof(Index));
             }

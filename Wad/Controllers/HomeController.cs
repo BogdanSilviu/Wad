@@ -7,12 +7,11 @@ namespace Wad.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+       
         private readonly IItemService _itemService;
 
-        public HomeController(ILogger<HomeController> logger, IItemService itemService)
+        public HomeController( IItemService itemService)
         {
-            _logger = logger;
             _itemService = itemService;
         }
 

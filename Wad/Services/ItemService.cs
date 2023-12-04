@@ -6,7 +6,7 @@ namespace Wad.Services
 {
     public class ItemService : IItemService
     {
-        private IRepositoryWrapper _repositoryWrapper;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
         public ItemService (IRepositoryWrapper repositoryWrapper)
         {
@@ -26,7 +26,7 @@ namespace Wad.Services
 
         public Item GetItemById(int id)
         {
-            return _repositoryWrapper.ItemRepository.FindByCondition(c => c.Id == id).FirstOrDefault();
+            return _repositoryWrapper.ItemRepository.FindByCondition(c => c.Id == id).FirstOrDefault()!;
         }
 
         public List<Item> GetItems()

@@ -25,8 +25,15 @@ namespace Wad.Controllers
         // GET: Bids
         public async Task<IActionResult> Index()
         {
-            var auctioneerContext = _context.Bid.Include(b => b.Item);
-            return View(await auctioneerContext.ToListAsync());
+            if (_context != null)
+            {
+                var auctioneerContext = _context.Bid!.Include(b => b.Item);
+                return View(await auctioneerContext.ToListAsync());
+            }
+            else
+            {
+                return View();
+            }
         }
 
         // GET: Bids/Details/5
@@ -108,8 +115,8 @@ namespace Wad.Controllers
             {
                 try
                 {
-                    _context.Update(bid);
-                    await _context.SaveChangesAsync();
+                    await UpdateBidAndSaveAsync(bid);
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -122,12 +129,19 @@ namespace Wad.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
+
             ViewData["ItemId"] = new SelectList(_context.Items, "Id", "Id", bid.ItemId);
             ViewData["UserId"] = new SelectList(_userManager.GetUserId(User), "Id", "Id", bid.UserId);
             return View(bid);
         }
+
+        private async Task UpdateBidAndSaveAsync(Bid bid)
+        {
+            _context.Update(bid);
+            await _context.SaveChangesAsync();
+        }
+
 
         // GET: Bids/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -7,16 +7,7 @@ using Wad.Services.Interfaces;
 using Wad.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-//var connectionString = builder.Configuration.GetConnectionString("AuctioneerContextConnection") ?? throw new InvalidOperationException("Connection string 'AuctioneerContextConnection' not found.");
-
-//builder.Services.AddDbContext<AuctioneerContext>(options =>
-    //options.UseSqlServer(connectionString));;
-
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    //.AddEntityFrameworkStores<AuctioneerContext>();;
 builder.Services.AddRazorPages();
-//var connectionString = builder.Configuration.GetConnectionString("AuctioneerDb") ?? throw new InvalidOperationException("Connection string 'AuctioneerContextConnection' not found.");
-
 builder.Services.Configure<IdentityOptions>(options =>
 {
     options.Password.RequireDigit = true;
@@ -48,12 +39,11 @@ builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 builder.Services.AddScoped<IBidService, BidService>();
 builder.Services.AddScoped<IBidRepository, BidRepository>();
-//builder.Services.AddDbContext<AuctioneerContext>(options =>
-//options.UseSqlServer(connectionString));;
+
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<AuctioneerContext>();;
+    .AddEntityFrameworkStores<AuctioneerContext>();
 
 
 // Add services to the container.
@@ -75,7 +65,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
+app.UseAuthentication();
 
 app.UseAuthorization();
 

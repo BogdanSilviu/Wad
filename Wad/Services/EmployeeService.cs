@@ -5,7 +5,7 @@ namespace Wad.Services
 {
     public class EmployeeService:IEmployeeService
     {
-        private IRepositoryWrapper _repositoryWrapper;
+        private readonly IRepositoryWrapper _repositoryWrapper;
 
         public EmployeeService(IRepositoryWrapper repositoryWrapper)
         {
@@ -26,7 +26,7 @@ namespace Wad.Services
 
         public Employee GetEmployeeById(int id)
         {
-            return _repositoryWrapper.EmployeeRepository.FindByCondition(c=>c.Id==id).FirstOrDefault();
+            return _repositoryWrapper.EmployeeRepository.FindByCondition(c=>c.Id==id).FirstOrDefault()!;
         }
 
         public List<Employee> GetEmployees()
